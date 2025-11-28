@@ -1,0 +1,38 @@
+{
+  "name": "@monorepo/root",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky || true",
+    "clean": "turbo run clean && rimraf .turbo node_modules",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "check-all": "turbo run lint format tsc test",
+    "format": "turbo run format",
+    "format:fix": "turbo run format:fix",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "tsc": "turbo run tsc",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage"
+  },
+  "devDependencies": {
+    "@monorepo/eslint-config": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "prettier": "catalog:",
+    "rimraf": "catalog:",
+    "turbo": "catalog:"
+  },
+  "packageManager": "pnpm@10.24.0",
+  "engines": {
+    "node": ">=22",
+    "pnpm": "10.24.0"
+  },
+  "volta": {
+    "node": "24.11.1",
+    "pnpm": "10.24.0"
+  }
+}

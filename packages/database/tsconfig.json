@@ -1,0 +1,14 @@
+{
+  "extends": "@monorepo/typescript-config",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": ["src/**/*", "prisma.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}
+

@@ -1,0 +1,118 @@
+packages:
+  - apps/*
+  - packages/*
+
+versions:
+  '@types/express': &types-express 5.0.1
+  '@types/node': &types-node 24.10.1
+  angular: &angular 21.0.0
+  angular-build: &angular-build 21.0.1
+  angular-cdk: &angular-cdk 21.0.1
+  class-variance-authority: &cva 0.7.1
+  clsx: &clsx 2.1.1
+  esbuild: &esbuild 0.27.0
+  eslint: &eslint 9.39.1
+  express: &express 5.1.0
+  husky: &husky 9.1.7
+  jsdom: &jsdom 27.1.0
+  lint-staged: &lint-staged 16.2.7
+  nestjs: &nestjs 11.1.9
+  nestjs-cli: &nestjs-cli 11.0.0
+  nestjs-cqrs: &nestjs-cqrs 11.0.3
+  ngxs: &ngxs 20.1.0
+  node: &node 24.11.1
+  pg: &pg 8.16.3
+  pnpm: &pnpm 10.24.0
+  postcss: &postcss 8.5.3
+  prettier: &prettier 3.7.1
+  prisma: &prisma 7.0.0
+  reflect-metadata: &reflect-metadata 0.2.2
+  rimraf: &rimraf 6.1.2
+  rx-angular: &rx-angular 20.1.0
+  rx-angular-isr: &rx-angular-isr 20.0.0
+  rxjs: &rxjs 7.8.0
+  storybook: &storybook 10.1.2
+  swc: &swc 1.15.3
+  tailwind-merge: &tailwind-merge 3.4.0
+  tailwindcss: &tailwindcss 4.1.12
+  tslib: &tslib 2.3.0
+  turbo: &turbo 2.6.1
+  typescript: &typescript 5.9.3
+  unplugin-swc: &unplugin-swc 1.5.9
+  vite: &vite 7.2.4
+  vitest: &vitest 4.0.14
+
+catalog:
+  '@angular/aria': *angular-cdk
+  '@angular/build': *angular-build
+  '@angular/cdk': *angular-cdk
+  '@angular/cli': *angular-build
+  '@angular/common': *angular
+  '@angular/compiler': *angular
+  '@angular/compiler-cli': *angular
+  '@angular/core': *angular
+  '@angular/forms': *angular
+  '@angular/platform-browser': *angular
+  '@angular/platform-server': *angular
+  '@angular/router': *angular
+  '@angular/ssr': *angular-build
+  '@nestjs/cli': *nestjs-cli
+  '@nestjs/common': *nestjs
+  '@nestjs/core': *nestjs
+  '@nestjs/cqrs': *nestjs-cqrs
+  '@nestjs/platform-express': *nestjs
+  '@nestjs/schematics': *nestjs-cli
+  '@nestjs/testing': *nestjs
+  '@ngxs/devtools-plugin': *ngxs
+  '@ngxs/form-plugin': *ngxs
+  '@ngxs/store': *ngxs
+  '@prisma/adapter-pg': *prisma
+  '@prisma/client': *prisma
+  '@rx-angular/cdk': *rx-angular
+  '@rx-angular/isr': *rx-angular-isr
+  '@rx-angular/template': *rx-angular
+  '@swc/core': *swc
+  '@tailwindcss/postcss': *tailwindcss
+  '@types/express': *types-express
+  '@types/node': *types-node
+  '@vitest/coverage-v8': *vitest
+  class-variance-authority: *cva
+  clsx: *clsx
+  esbuild: *esbuild
+  eslint: *eslint
+  express: *express
+  husky: *husky
+  jsdom: *jsdom
+  lint-staged: *lint-staged
+  node: *node
+  pg: *pg
+  pnpm: *pnpm
+  postcss: *postcss
+  prettier: *prettier
+  prisma: *prisma
+  reflect-metadata: *reflect-metadata
+  rimraf: *rimraf
+  rxjs: *rxjs
+  storybook: *storybook
+  '@storybook/angular': *storybook
+  tailwind-merge: *tailwind-merge
+  tailwindcss: *tailwindcss
+  tslib: *tslib
+  turbo: *turbo
+  typescript: *typescript
+  unplugin-swc: *unplugin-swc
+  vite: *vite
+  vitest: *vitest
+
+ignoredBuiltDependencies:
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@swc/core'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - lmdb
+  - msgpackr-extract
+  - prisma
+  - unrs-resolver

@@ -1,0 +1,262 @@
+<!-- Counter Section -->
+<section class="p-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 min-h-screen">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8 text-slate-900 dark:text-white">NGXS Demo</h1>
+
+    <!-- Text Input with NGXS Form Plugin -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Text Input (Form Plugin)</h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Reactive Forms + &#64;ngxs/form-plugin で自動同期</p>
+
+      <form [formGroup]="textForm" ngxsForm="home.textForm" class="space-y-4">
+        <app-input-field label="テキスト入力（3〜100文字）" id="text-input" [control]="textForm.controls.text">
+          <input
+            appInput
+            id="text-input"
+            formControlName="text"
+            [error]="isTextInvalid"
+            placeholder="テキストを入力..."
+            class="w-full"
+          />
+        </app-input-field>
+      </form>
+
+      <!-- Store Value Display -->
+      <div class="mt-6 p-4 bg-slate-100 dark:bg-slate-700 rounded-lg" *rxLet="textFormModel$; let model">
+        <p class="text-sm text-slate-600 dark:text-slate-400">
+          <span class="font-medium">Store値:</span>
+          <code class="ml-2 bg-slate-200 dark:bg-slate-600 px-2 py-1 rounded">{{ model.text || '(empty)' }}</code>
+        </p>
+      </div>
+
+      <div class="mt-2 text-xs text-slate-500 dark:text-slate-400" *rxLet="textFormStatus$; let status">
+        Status: <code class="bg-slate-200 dark:bg-slate-600 px-1 rounded">{{ status || 'N/A' }}</code>
+      </div>
+    </div>
+
+    <!-- Counter Display -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-8" *rxLet="count$; let count">
+      <div class="text-center">
+        <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">Current Count</p>
+        <p class="text-6xl font-bold text-slate-900 dark:text-white tabular-nums">{{ count }}</p>
+      </div>
+      <div class="mt-8 flex justify-center">
+        <button appButton size="lg" (click)="increment()">Increment</button>
+      </div>
+    </div>
+
+    <!-- Angular Aria Toolbar Demo -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Angular Aria Toolbar</h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+        キーボードナビゲーション対応（矢印キーで移動、Enter/Spaceで選択）
+      </p>
+
+      <!-- Toolbar with ButtonDirective styling -->
+      <div
+        ngToolbar
+        aria-label="Text Formatting"
+        [(values)]="alignment"
+        class="flex gap-4 p-4 bg-slate-100 dark:bg-slate-700 rounded-xl"
+      >
+        <!-- Action buttons -->
+        <div class="flex gap-2">
+          <button appButton variant="outline" size="icon" ngToolbarWidget value="undo" aria-label="Undo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 7v6h6" />
+              <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+            </svg>
+          </button>
+          <button appButton variant="outline" size="icon" ngToolbarWidget value="redo" aria-label="Redo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 7v6h-6" />
+              <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="w-px bg-slate-300 dark:bg-slate-500" role="separator"></div>
+
+        <!-- Alignment radio group -->
+        <div ngToolbarWidgetGroup role="radiogroup" aria-label="Text alignment" class="flex gap-2">
+          <button
+            appButton
+            variant="outline"
+            size="icon"
+            ngToolbarWidget
+            value="left"
+            role="radio"
+            #left="ngToolbarWidget"
+            [attr.aria-checked]="left.selected()"
+            [class.bg-primary]="left.selected()"
+            [class.text-primary-foreground]="left.selected()"
+            aria-label="Align left"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="21" x2="3" y1="6" y2="6" />
+              <line x1="15" x2="3" y1="12" y2="12" />
+              <line x1="17" x2="3" y1="18" y2="18" />
+            </svg>
+          </button>
+          <button
+            appButton
+            variant="outline"
+            size="icon"
+            ngToolbarWidget
+            value="center"
+            role="radio"
+            #center="ngToolbarWidget"
+            [attr.aria-checked]="center.selected()"
+            [class.bg-primary]="center.selected()"
+            [class.text-primary-foreground]="center.selected()"
+            aria-label="Align center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="21" x2="3" y1="6" y2="6" />
+              <line x1="17" x2="7" y1="12" y2="12" />
+              <line x1="19" x2="5" y1="18" y2="18" />
+            </svg>
+          </button>
+          <button
+            appButton
+            variant="outline"
+            size="icon"
+            ngToolbarWidget
+            value="right"
+            role="radio"
+            #right="ngToolbarWidget"
+            [attr.aria-checked]="right.selected()"
+            [class.bg-primary]="right.selected()"
+            [class.text-primary-foreground]="right.selected()"
+            aria-label="Align right"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="21" x2="3" y1="6" y2="6" />
+              <line x1="21" x2="9" y1="12" y2="12" />
+              <line x1="21" x2="7" y1="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="mt-4 text-sm text-slate-600 dark:text-slate-400">
+        Selected alignment: <code class="bg-slate-200 dark:bg-slate-600 px-2 py-1 rounded">{{ alignment() }}</code>
+      </p>
+    </div>
+
+    <!-- Button Component Demo -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Button Component (shadcn/ui style)</h2>
+
+      <div class="space-y-6">
+        <!-- Variants -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-slate-700 dark:text-slate-300">Variants</h3>
+          <div class="flex flex-wrap gap-3">
+            <button appButton>Default</button>
+            <button appButton variant="secondary">Secondary</button>
+            <button appButton variant="destructive">Destructive</button>
+            <button appButton variant="outline">Outline</button>
+            <button appButton variant="ghost">Ghost</button>
+            <button appButton variant="link">Link</button>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-slate-700 dark:text-slate-300">Sizes</h3>
+          <div class="flex flex-wrap items-center gap-3">
+            <button appButton size="sm">Small</button>
+            <button appButton size="default">Default</button>
+            <button appButton size="lg">Large</button>
+            <button appButton size="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="M12 5v14" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Disabled -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-slate-700 dark:text-slate-300">Disabled</h3>
+          <div class="flex flex-wrap gap-3">
+            <button appButton disabled>Disabled</button>
+            <button appButton variant="secondary" disabled>Disabled</button>
+            <button appButton variant="outline" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <!-- As Link -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-slate-700 dark:text-slate-300">As Link</h3>
+          <div class="flex flex-wrap gap-3">
+            <a appButton href="https://angular.dev" target="_blank">Angular Docs</a>
+            <a appButton variant="outline" href="https://github.com" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

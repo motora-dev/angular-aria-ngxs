@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "cache": true,
+      "outputs": ["dist/**", "tsconfig.build.tsbuildinfo"]
+    },
+    "lint": {
+      "cache": true
+    },
+    "lint:fix": {
+      "cache": false
+    },
+    "tsc": {
+      "cache": true,
+      "outputs": ["./.tsbuildinfo/build.tsbuildinfo", "./.tsbuildinfo/spec.tsbuildinfo"]
+    }
+  }
+}

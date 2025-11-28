@@ -1,0 +1,38 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "clean": {
+      "cache": false
+    },
+    "build": {
+      "cache": true
+    },
+    "start": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "format": {
+      "cache": true
+    },
+    "format:fix": {
+      "cache": false
+    },
+    "lint": {
+      "cache": true
+    },
+    "lint:fix": {
+      "cache": false
+    },
+    "tsc": {
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "test:coverage": {
+      "cache": true,
+      "outputs": ["coverage/**"]
+    }
+  }
+}

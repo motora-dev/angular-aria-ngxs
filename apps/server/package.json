@@ -1,0 +1,69 @@
+{
+  "name": "@monorepo/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf .tsbuildinfo .turbo coverage dist node_modules",
+    "build": "node esbuild.config.mjs",
+    "start": "node esbuild.config.mjs --watch --debug",
+    "start:prd": "node dist/main.js",
+    "check-all": "pnpm lint && pnpm format && pnpm tsc && pnpm test",
+    "format": "prettier --check \"src/**/*.ts\"",
+    "format:fix": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"src/**/*.ts\" --config eslint.config.mjs",
+    "lint:fix": "pnpm lint --fix",
+    "tsc": "pnpm tsc:build && pnpm tsc:test",
+    "tsc:build": "tsc --noEmit --project tsconfig.build.json",
+    "tsc:test": "tsc --noEmit --project tsconfig.spec.json",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:e2e": "vitest run --project e2e",
+    "test:coverage": "vitest run --project unit --coverage"
+  },
+  "dependencies": {
+    "@monorepo/database": "workspace:*",
+    "@nestjs/common": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/cqrs": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@prisma/adapter-pg": "catalog:",
+    "@prisma/client": "catalog:",
+    "pg": "catalog:",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:"
+  },
+  "devDependencies": {
+    "@monorepo/eslint-config": "workspace:*",
+    "@monorepo/typescript-config": "workspace:*",
+    "@nestjs/cli": "catalog:",
+    "@nestjs/schematics": "catalog:",
+    "@nestjs/testing": "catalog:",
+    "@swc/core": "catalog:",
+    "@types/express": "^5.0.0",
+    "@types/node": "catalog:",
+    "@types/supertest": "^6.0.2",
+    "@vitest/coverage-v8": "catalog:",
+    "esbuild": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "prettier": "catalog:",
+    "rimraf": "catalog:",
+    "supertest": "^7.0.0",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.20.0",
+    "unplugin-swc": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "prettier --write",
+      "eslint --fix --config eslint.config.mjs"
+    ]
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}
